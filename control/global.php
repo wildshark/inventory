@@ -11,10 +11,10 @@ function menu(){
             <i class="icofont-chart-histogram fs-5"></i> <span>Inventory</span> <span class="arrow icofont-rounded-down ms-auto text-end fs-5"></span></a>
             <!-- Menu: Sub menu ul -->
             <ul class="sub-menu collapse" id="menu-inventory">
-                <li><a class="ms-link" href="inventory-info.html">Stock List</a></li>
-                <li><a class="ms-link" href="purchase.html">Purchase</a></li>
-                <li><a class="ms-link" href="supplier.html">Supplier</a></li>
-                <li><a class="ms-link" href="returns.html">Returns</a></li>
+                <li><a class="ms-link" href="?main=inventory-info">Stock List</a></li>
+                <li><a class="ms-link" href="?main=purchase">Purchase</a></li>
+                <li><a class="ms-link" href="?main=issued">Issued</a></li>
+                <li><a class="ms-link" href="?main=returns">Returns</a></li>
                 <li><a class="ms-link" href="department.html">Department</a></li>
             </ul>
         </li>';
@@ -39,24 +39,10 @@ function user_menu(){
     ';
 }
 
-function conn($request){
-    //echo http_build_query($data);
-        //exit();
-    $options = array(
-        'http'=> array(
-        'method'=> "POST",
-        'header'=>
-            "Accept-language: en\r\n".
-            "Content-type: application/x-www-form-urlencoded\r\n",
-            'content'=>http_build_query($request)
-            )
-        );
-              
-    $context = stream_context_create($options);
-              
-    $fp = fopen('http://localhost/inventory/api/','rb',false,$context);
-    $response = stream_get_contents($fp);
-    return json_decode($response,true);
-    
+function userbar(){
+
+    return '<p class="mb-0 text-end line-height-sm "><span class="font-weight-bold">'.$_COOKIE['user'].'</span></p>
+    <small>Admin Profile</small>';
 }
-    
+
+

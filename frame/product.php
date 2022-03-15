@@ -118,7 +118,42 @@
                         <div class="border-0 mb-4">
                             <div class="card-header py-3 no-bg bg-transparent d-flex align-items-center px-0 justify-content-between border-bottom flex-wrap">
                                 <h3 class="fw-bold mb-0">Categorie List</h3>
-                                <a href="categories-add.html" class="btn btn-primary py-2 px-5 btn-set-task w-sm-100"><i class="icofont-plus-circle me-2 fs-6"></i> Add Categories</a>
+                                <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModalLive" class="btn btn-primary py-2 px-5 btn-set-task w-sm-100"><i class="icofont-plus-circle me-2 fs-6"></i> Add Product</a>
+                                <!-- Modal -->
+                                <div class="modal fade" id="exampleModalLive" tabindex="-1">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLiveLabel">Add Product</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <form method='post' action='index.php'>
+                                                <div class="modal-body">
+                                                    <div class="row g-3 align-items-center">
+                                                        <div class="col-md-12">
+                                                            <label for="firstname" class="form-label">Categories</label>
+                                                            <select name='category' class="form-control" required>
+                                                                <?=category_combo()?>
+                                                            </select>
+                                                        </div>
+                                                        <div class="col-md-12">
+                                                            <label for="firstname" class="form-label">Product Name</label>
+                                                            <input type="text" name='name' class="form-control" required>
+                                                        </div>
+                                                        <div class="col-md-12">
+                                                            <label for="firstname" class="form-label"> Description</label>
+                                                            <input type="text" name='detail' class="form-control" required>
+                                                        </div>
+                                                    </div>    
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                    <button type="submit" name='submit' value='product-add' class="btn btn-primary">Save</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div> <!-- Row end  -->
@@ -130,169 +165,14 @@
                                         <thead>
                                             <tr>
                                                 <th>Id</th>
+                                                <th>product</th>
                                                 <th>Categorie</th>
-                                                <th>Date</th>
                                                 <th>Status</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td><strong>#0001</strong></td>
-                                                <td>Watch</td>
-                                                <td>March 13, 2021</td>
-                                                <td><span class="badge bg-success">Published</span></td>
-                                                <td>
-                                                    <div class="btn-group" role="group" aria-label="Basic outlined example">
-                                                        <a href="categories-edit.html" class="btn btn-outline-secondary"><i class="icofont-edit text-success"></i></a>
-                                                        <button type="button" class="btn btn-outline-secondary deleterow"><i class="icofont-ui-delete text-danger"></i></button>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td><strong>#0002</strong></td>
-                                                <td>Toy</td>
-                                                <td>January 14, 2021</td>
-                                                <td><span class="badge bg-warning">Scheduled</span></td>
-                                                <td>
-                                                    <div class="btn-group" role="group" aria-label="Basic outlined example">
-                                                        <a href="categories-edit.html" class="btn btn-outline-secondary"><i class="icofont-edit text-success"></i></a>
-                                                        <button type="button" class="btn btn-outline-secondary deleterow"><i class="icofont-ui-delete text-danger"></i></button>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td><strong>#0003</strong></td>
-                                                <td>Laptop</td>
-                                                <td>February 08, 2021</td>
-                                                <td><span class="badge bg-success">Published</span></td>
-                                                <td>
-                                                    <div class="btn-group" role="group" aria-label="Basic outlined example">
-                                                        <a href="categories-edit.html" class="btn btn-outline-secondary"><i class="icofont-edit text-success"></i></a>
-                                                        <button type="button" class="btn btn-outline-secondary deleterow"><i class="icofont-ui-delete text-danger"></i></button>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td><strong>#0004</strong></td>
-                                                <td>Mobile</td>
-                                                <td>April  02, 2021</td>
-                                                <td><span class="badge bg-warning">Scheduled</span></td>
-                                                <td>
-                                                    <div class="btn-group" role="group" aria-label="Basic outlined example">
-                                                        <a href="categories-edit.html" class="btn btn-outline-secondary"><i class="icofont-edit text-success"></i></a>
-                                                        <button type="button" class="btn btn-outline-secondary deleterow"><i class="icofont-ui-delete text-danger"></i></button>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td><strong>#0005</strong></td>
-                                                <td>Tv</td>
-                                                <td>June 19, 2021</td>
-                                                <td><span class="badge bg-success">Published</span></td>
-                                                <td>
-                                                    <div class="btn-group" role="group" aria-label="Basic outlined example">
-                                                        <a href="categories-edit.html" class="btn btn-outline-secondary"><i class="icofont-edit text-success"></i></a>
-                                                        <button type="button" class="btn btn-outline-secondary deleterow"><i class="icofont-ui-delete text-danger"></i></button>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td><strong>#0006</strong></td>
-                                                <td>Cloths</td>
-                                                <td>April 10, 2021</td>
-                                                <td><span class="badge bg-warning">Scheduled</span></td>
-                                                <td>
-                                                    <div class="btn-group" role="group" aria-label="Basic outlined example">
-                                                        <a href="categories-edit.html" class="btn btn-outline-secondary"><i class="icofont-edit text-success"></i></a>
-                                                        <button type="button" class="btn btn-outline-secondary deleterow"><i class="icofont-ui-delete text-danger"></i></button>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td><strong>#0007</strong></td>
-                                                <td>Footwear</td>
-                                                <td>May 11, 2021</td>
-                                                <td><span class="badge bg-success">Published</span></td>
-                                                <td>
-                                                    <div class="btn-group" role="group" aria-label="Basic outlined example">
-                                                        <a href="categories-edit.html" class="btn btn-outline-secondary"><i class="icofont-edit text-success"></i></a>
-                                                        <button type="button" class="btn btn-outline-secondary deleterow"><i class="icofont-ui-delete text-danger"></i></button>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td><strong>#0008</strong></td>
-                                                <td>Kitchenware</td>
-                                                <td>June 13, 2021</td>
-                                                <td><span class="badge bg-danger">Hidden</span></td>
-                                                <td>
-                                                    <div class="btn-group" role="group" aria-label="Basic outlined example">
-                                                        <a href="categories-edit.html" class="btn btn-outline-secondary"><i class="icofont-edit text-success"></i></a>
-                                                        <button type="button" class="btn btn-outline-secondary deleterow"><i class="icofont-ui-delete text-danger"></i></button>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td><strong>#0009</strong></td>
-                                                <td>Beautywear</td>
-                                                <td>June 13, 2021</td>
-                                                <td><span class="badge bg-danger">Hidden</span></td>
-                                                <td>
-                                                    <div class="btn-group" role="group" aria-label="Basic outlined example">
-                                                        <a href="categories-edit.html" class="btn btn-outline-secondary"><i class="icofont-edit text-success"></i></a>
-                                                        <button type="button" class="btn btn-outline-secondary deleterow"><i class="icofont-ui-delete text-danger"></i></button>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td><strong>#0010</strong></td>
-                                                <td>Game accessories</td>
-                                                <td>February 13, 2021</td>
-                                                <td><span class="badge bg-success">Published</span></td>
-                                                <td>
-                                                    <div class="btn-group" role="group" aria-label="Basic outlined example">
-                                                        <a href="categories-edit.html" class="btn btn-outline-secondary"><i class="icofont-edit text-success"></i></a>
-                                                        <button type="button" class="btn btn-outline-secondary deleterow"><i class="icofont-ui-delete text-danger"></i></button>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td><strong>#0011</strong></td>
-                                                <td>Flower Port</td>
-                                                <td>February 08, 2021</td>
-                                                <td><span class="badge bg-success">Published</span></td>
-                                                <td>
-                                                    <div class="btn-group" role="group" aria-label="Basic outlined example">
-                                                        <a href="categories-edit.html" class="btn btn-outline-secondary"><i class="icofont-edit text-success"></i></a>
-                                                        <button type="button" class="btn btn-outline-secondary deleterow"><i class="icofont-ui-delete text-danger"></i></button>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td><strong>#0012</strong></td>
-                                                <td>Accessories</td>
-                                                <td>March 28, 2021</td>
-                                                <td><span class="badge bg-success">Published</span></td>
-                                                <td>
-                                                    <div class="btn-group" role="group" aria-label="Basic outlined example">
-                                                        <a href="categories-edit.html" class="btn btn-outline-secondary"><i class="icofont-edit text-success"></i></a>
-                                                        <button type="button" class="btn btn-outline-secondary deleterow"><i class="icofont-ui-delete text-danger"></i></button>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td><strong>#0013</strong></td>
-                                                <td>Bags</td>
-                                                <td>March 08, 2021</td>
-                                                <td><span class="badge bg-success">Published</span></td>
-                                                <td>
-                                                    <div class="btn-group" role="group" aria-label="Basic outlined example">
-                                                        <a href="categories-edit.html" class="btn btn-outline-secondary"><i class="icofont-edit text-success"></i></a>
-                                                        <button type="button" class="btn btn-outline-secondary deleterow"><i class="icofont-ui-delete text-danger"></i></button>
-                                                    </div>
-                                                </td>
-                                            </tr>
+                                            <?=product_datasheet()?>
                                         </tbody>
                                     </table>
                                 </div>

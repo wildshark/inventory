@@ -65,15 +65,10 @@
                                 </div>
                             </div>
                             
-                            <div class="dropdown notifications">
-                                <a class="nav-link dropdown-toggle pulse" href="#" role="button" data-bs-toggle="dropdown">
-                                    <i class="icofont-alarm fs-5"></i>
-                                    <span class="pulse-ring"></span>
-                                </a>
-                            </div>
                             <div class="dropdown user-profile ml-2 ml-sm-3 d-flex align-items-center zindex-popover">
                                 <div class="u-info me-2">
-                                  <?=userbar($_COOKIE)?>
+                                    <p class="mb-0 text-end line-height-sm "><span class="font-weight-bold">John Quinn</span></p>
+                                    <small>Admin Profile</small>
                                 </div>
                                 <a class="nav-link dropdown-toggle pulse p-0" href="#" role="button" data-bs-toggle="dropdown" data-bs-display="static">
                                     <img class="avatar lg rounded-circle img-thumbnail" src="assets/images/profile_av.svg" alt="profile">
@@ -123,33 +118,50 @@
                         <div class="border-0 mb-4">
                             <div class="card-header py-3 no-bg bg-transparent d-flex align-items-center px-0 justify-content-between border-bottom flex-wrap">
                                 <h3 class="fw-bold mb-0">Categorie List</h3>
-                                <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModalLive" class="btn btn-primary py-2 px-5 btn-set-task w-sm-100"><i class="icofont-plus-circle me-2 fs-6"></i> Add Categories</a>
+                                <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModalLive" class="btn btn-primary py-2 px-5 btn-set-task w-sm-100"><i class="icofont-plus-circle me-2 fs-6"></i> Add Product</a>
                                 <!-- Modal -->
                                 <div class="modal fade" id="exampleModalLive" tabindex="-1">
                                     <div class="modal-dialog modal-dialog-centered">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLiveLabel">Add Categories</h5>
+                                                <h5 class="modal-title" id="exampleModalLiveLabel">Add Product</h5>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
                                             <form method='post' action='index.php'>
                                                 <div class="modal-body">
                                                     <div class="row g-3 align-items-center">
+                                                        <div class="col-md-6">
+                                                            <label for="firstname" class="form-label">Date </label>
+                                                            <input type="date" name='date' class="form-control" required>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <label for="firstname" class="form-label">Invoice Num</label>
+                                                            <input type="text" name='invoice' class="form-control" required>
+                                                        </div>
                                                         <div class="col-md-12">
-                                                            <label for="firstname" class="form-label">Category Name</label>
-                                                            <input type="text" name='name' class="form-control" required>
+                                                            <label for="firstname" class="form-label">Product</label>
+                                                            <select name='product' class="form-control" required>
+                                                                <?=product_combo()?>
+                                                            </select>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <label for="firstname" class="form-label">Price</label>
+                                                            <input type="text" name='price' class="form-control" required>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <label for="firstname" class="form-label"> Qty</label>
+                                                            <input type="text" name='qty' class="form-control" required>
                                                         </div>
                                                     </div>    
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                    <button type="submit" name='submit' value='category-add' class="btn btn-primary">Save</button>
+                                                    <button type="submit" name='submit' value='purchase-add' class="btn btn-primary">Save</button>
                                                 </div>
                                             </form>
                                         </div>
                                     </div>
                                 </div>
-                                
                             </div>
                         </div>
                     </div> <!-- Row end  -->
@@ -161,13 +173,18 @@
                                         <thead>
                                             <tr>
                                                 <th>Id</th>
+                                                <th>Date</th>
+                                                <th>Invoice</th>
+                                                <th>Product</th>
                                                 <th>Categorie</th>
-                                                <th>Status</th>
+                                                <th>Price</th>
+                                                <th>Qty</th>
+                                                <th>Amount</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <?=category_datasheet()?>
+                                            <?=purchase_datasheet()?>
                                         </tbody>
                                     </table>
                                 </div>
@@ -177,6 +194,7 @@
                 </div>
             </div>
         </div> 
+
     </div>
 
     <!-- Jquery Core Js -->

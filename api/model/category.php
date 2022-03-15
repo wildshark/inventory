@@ -7,7 +7,7 @@ class category{
         $sql ='SELECT * FROM get_category WHERE company_id =? AND category_name = ?';
         $stmt = $conn->prepare($sql);
         $stmt->execute($request);
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
     public static function add($conn,$request){

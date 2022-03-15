@@ -1,7 +1,6 @@
 <!doctype html>
 <html class="no-js" lang="en" dir="ltr">
 
-<!-- Mirrored from pixelwibes.com/template/ebazar/html/dist/ui-elements/auth-404.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 01 Mar 2022 12:10:36 GMT -->
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
@@ -48,7 +47,7 @@
                                         <span class="">Sorry, the page you're looking for doesn;t exist. if you think something is brlken, report a problem.</span>
                                     </div>
                                     <div class="col-12 text-center">
-                                        <a href="index.html" title="" class="btn btn-lg btn-block btn-light lift text-uppercase">Back to Home</a>
+                                        <a href="?main=dashboard" title="" class="btn btn-lg btn-block btn-light lift text-uppercase">Back to Home</a>
                                     </div>
                                 </form>
                                 <!-- End Form -->
@@ -67,5 +66,4 @@
     <script src="assets/bundles/libscripts.bundle.js"></script>
 </body>
 
-<!-- Mirrored from pixelwibes.com/template/ebazar/html/dist/ui-elements/auth-404.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 01 Mar 2022 12:10:36 GMT -->
 </html>

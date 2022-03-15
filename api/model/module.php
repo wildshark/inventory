@@ -45,7 +45,7 @@ function module($conn,$request){
 
         case'category';
             if($action === 'add'){
-                $search[] = $request['company_id'];
+                $search[] = $request['id'];
                 $search[] = $request['category'];
                 $check = category::check($conn,$search);
                 if($check !== false){
@@ -54,7 +54,7 @@ function module($conn,$request){
                         'msg'=>'record already exist'
                     );
                 }else{
-                    $q[] =  $request['company_id'];
+                    $q[] =  $request['id'];
                     $q[] =  $request['category'];
                     $response = category::add($conn,$q);
                 }                
@@ -113,39 +113,101 @@ function module($conn,$request){
         break;
 
         case'stock';
-            if($action === 'add'){
+            if($action === 'purchase'){
                 $search[] = $request['id'];
                 $search[] = $request['item'];
                 $search[] = $request['date'];
                 $search[] = $request['ref'];
                 $check = inventory::check($conn,$search);
-                if($check !== false){
+                if($check == false){
+                    $item[] =  $request['id'];
+                    $item[] =  $request['item'];
+                    $bbalance = inventory::verify_qty_avalibe($conn,$item);
+                    if($bbalance === false){
+                        $response = array(
+                            'status'=>5103,
+                            'msg'=>'query record failed'
+                        );
+                    }elseif($request['qty'] > $bbalance['balance']){
+                        $response = array(
+                            'status'=>5106,
+                            'msg'=>'stock is below request'
+                        );
+                    }else{
+                        $q[] =  $request['id'];
+                        $q[] =  $request['item'];
+                        $q[] =  $request['date'];
+                        $q[] =  $request['ref'];
+                        $q[] =  $request['details'];
+                        $q[] =  $request['price'];
+                        $q[] =  $request['qty'];
+                        $q[] = 1;
+                        $response = inventory::purchase($conn,$q);
+                    }
+                }else{
                     $response = array(
                         'status'=>5105,
                         'msg'=>'record already exist'
                     );
-                }else{
+                }
+            }elseif($action === 'issued'){
+                $search[] = $request['id'];
+                $search[] = $request['item'];
+                $search[] = $request['date'];
+                $search[] = $request['ref'];
+                $check = inventory::check($conn,$search);
+                if($check == false){
                     $q[] =  $request['id'];
                     $q[] =  $request['item'];
                     $q[] =  $request['date'];
                     $q[] =  $request['ref'];
                     $q[] =  $request['details'];
                     $q[] =  $request['price'];
-                    $q[] =  $request['qty'];
-                    $response = inventory::add($conn,$q);
+                    $q[] =  $request['qty']; 
+                    $q[] = 2;
+                    $response = inventory::issued($conn,$q);
+                }else{
+                    $response = array(
+                        'status'=>5105,
+                        'msg'=>'record already exist'
+                    );
                 }
-            }elseif($action === 'issued'){
-                $q[] =  $request['id'];
-                $q[] =  $request['item'];
-                $q[] =  $request['date'];
-                $q[] =  $request['ref'];
-                $q[] =  $request['details'];
-                $q[] =  $request['price'];
-                $q[] =  $request['qty'];
-                $response = inventory::issued($conn,$q);
+            }elseif($action === 'returns'){
+                $search[] = $request['id'];
+                $search[] = $request['item'];
+                $search[] = $request['date'];
+                $search[] = $request['ref'];
+                $check = inventory::check($conn,$search);
+                if($check == false){
+                    $q[] =  $request['id'];
+                    $q[] =  $request['item'];
+                    $q[] =  $request['date'];
+                    $q[] =  $request['ref'];
+                    $q[] =  $request['details'];
+                    $q[] =  $request['price'];
+                    $q[] =  $request['qty']; 
+                    $q[] = 3;
+                    $response = inventory::returns($conn,$q);
+                }else{
+                    $response = array(
+                        'status'=>5105,
+                        'msg'=>'record already exist'
+                    );
+                }
             }elseif($action === 'fetch'){
                 $q[] =  $request['id'];
-                $response = inventory::fetch($conn,$q);
+                if($cmd[2] ==='purchase'){
+                    $response = inventory::fetch_purchase($conn,$q);
+                }elseif($cmd[2] === 'issued'){
+                    $response = inventory::fetch_issued($conn,$q);
+                }elseif($cmd[2] === 'returns'){
+                    $response = inventory::fetch_returns($conn,$q);
+                }elseif($cmd[2] === 'summary'){
+                    $response = inventory::stock_summary_fetch($conn,$q);
+                }elseif($cmd[2] === 'details'){
+                    $q[] = $request['product'];
+                    $response = inventory::stock_details_fetch($conn,$q);
+                }
             }elseif($action === 'view'){
                 $q[] =  $request['id'];
                 $response = inventory::view($conn,$q);
@@ -161,8 +223,6 @@ function module($conn,$request){
                 "msg"=>"invaild command"
             );  
     }
-
     return $response;
-
 }
 ?>

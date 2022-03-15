@@ -78,7 +78,7 @@
                                     <div class="col-6">
                                         <div class="mb-2">
                                             <label class="form-label">Password</label>
-                                            <input type='password' name='password' class="form-control form-control-lg" placeholder="Parker">
+                                            <input type='password' name='password' class="form-control form-control-lg" placeholder="****">
                                         </div>
                                     </div>
                                     

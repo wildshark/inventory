@@ -1,6 +1,7 @@
 <?php
 session_start();
 include('control/global.php');
+include('control/function.php');
 if(!isset($_REQUEST['submit'])){
     if(!isset($_REQUEST['page'])){
         if(!isset($_REQUEST['main'])){
