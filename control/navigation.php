@@ -20,8 +20,13 @@ if(!isset($_SESSION['token'])){
                         'id'=>$_SESSION['cid']
                     );
                     $response = conn($data);
-                    $data = $response['response']['current'];
-                    $bal = $response['summary'];
+                    if(isset($response['response']['status'])){
+                        $data = false;
+                        $bal = false;
+                    }else{
+                        $data = $response['response']['current'];
+                        $bal = $response['response']['summary'];
+                    }
                     require('frame/dashboard.php');
                 break;
             
@@ -51,6 +56,11 @@ if(!isset($_SESSION['token'])){
 
                 case'returns';
                     require('frame/returns.php');
+                break;
+
+                case'admin-profile';
+                    $profile =  profile();
+                    require('frame/profile.php');
                 break;
             
                 default:

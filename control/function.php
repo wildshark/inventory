@@ -83,6 +83,67 @@ function product_combo(){
     return $combo;
 }
 
+function summary($bal){
+
+    if((isset($bal['status']))||($bal == false)){
+        $purchase = 0;
+        $issued = 0;
+        $return = 0;
+        $balance = 0;
+    }else{
+        $purchase = $bal['purchase'];
+        $issued = $bal['issued'];
+        $return = $bal['returs'];
+        $balance = (($purchase + $return) - $issued);
+    }
+
+    return'
+    <div class="col">
+        <div class="alert-success alert mb-0">
+            <div class="d-flex align-items-center">
+                <div class="avatar rounded no-thumbnail bg-warning text-light"><i class="fa fa-dollar fa-lg"></i></div>
+                <div class="flex-fill ms-3 text-truncate">
+                    <div class="h6 mb-0">Purchase</div>
+                    <span class="small">'.$purchase.'</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="alert-danger alert mb-0">
+            <div class="d-flex align-items-center">
+                <div class="avatar rounded no-thumbnail bg-success text-light"><i class="fa fa-credit-card fa-lg"></i></div>
+                <div class="flex-fill ms-3 text-truncate">
+                    <div class="h6 mb-0">Issued</div>
+                    <span class="small">'.$issued.'</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="alert-warning alert mb-0">
+            <div class="d-flex align-items-center">
+                <div class="avatar rounded no-thumbnail bg-danger text-light"><i class="fa fa-smile-o fa-lg"></i></div>
+                <div class="flex-fill ms-3 text-truncate">
+                    <div class="h6 mb-0">Returns</div>
+                    <span class="small">'.$return.'</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="alert-info alert mb-0">
+            <div class="d-flex align-items-center">
+                <div class="avatar rounded no-thumbnail bg-info text-light"><i class="fa fa-shopping-bag" aria-hidden="true"></i></div>
+                <div class="flex-fill ms-3 text-truncate">
+                    <div class="h6 mb-0">Balance</div>
+                    <span class="small">'.$balance.'</span>
+                </div>
+            </div>
+        </div>
+    </div>';
+}
+
 function current_transaction_datasheet($data){
 
     

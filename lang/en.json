@@ -1,0 +1,46 @@
+[
+    {
+        "lable":{
+            "purchase":"Purchase",
+            "issued":"Issued",
+            "return":"Returns",
+            "balance":"Balance",
+            "user":"User Profile",
+            "signout":"Signout",
+            "id":"ID",
+            "ref":"Ref",
+            "product":"Product",
+            "category":"Category",
+            "date":"Date",
+            "invoice":"Inovice",
+            "qty":"Qty",
+            "price":"Price",
+            "amount":"Amount",
+            "search":"Search",
+            "status":"Status",
+            "action":"Action"
+        }
+    },
+    {
+        "menu":{
+            "dashboard":"Dashboard",
+            "categories":"Categories",
+            "product":"Product",
+            "inventory":"Inventory",
+            "stock":"Stock List",
+            "purchase":"Purchase",
+            "issued":"Issued",
+            "return":"Returns"
+        }
+    },
+    {
+        "button":{
+            "btnPurchase":"Add Purchase",
+            "btnIssued":"Add Isssued",
+            "btnReturn":"Add Returns",
+            "btnClose":"Close",
+            "btnSave":"Save",
+            "btnUpdate":"Update"
+        }
+    }
+]
