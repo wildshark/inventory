@@ -124,7 +124,7 @@
                         <div class="col">
                             <div class="alert-success alert mb-0">
                                 <div class="d-flex align-items-center">
-                                    <div class="avatar rounded no-thumbnail bg-success text-light"><i class="fa fa-dollar fa-lg"></i></div>
+                                    <div class="avatar rounded no-thumbnail bg-warning text-light"><i class="fa fa-dollar fa-lg"></i></div>
                                     <div class="flex-fill ms-3 text-truncate">
                                         <div class="h6 mb-0">Revenue</div>
                                         <span class="small">$18,925</span>
@@ -135,7 +135,7 @@
                         <div class="col">
                             <div class="alert-danger alert mb-0">
                                 <div class="d-flex align-items-center">
-                                    <div class="avatar rounded no-thumbnail bg-danger text-light"><i class="fa fa-credit-card fa-lg"></i></div>
+                                    <div class="avatar rounded no-thumbnail bg-success text-light"><i class="fa fa-credit-card fa-lg"></i></div>
                                     <div class="flex-fill ms-3 text-truncate">
                                         <div class="h6 mb-0">Expense</div>
                                         <span class="small">$11,024</span>
@@ -146,7 +146,7 @@
                         <div class="col">
                             <div class="alert-warning alert mb-0">
                                 <div class="d-flex align-items-center">
-                                    <div class="avatar rounded no-thumbnail bg-warning text-light"><i class="fa fa-smile-o fa-lg"></i></div>
+                                    <div class="avatar rounded no-thumbnail bg-danger text-light"><i class="fa fa-smile-o fa-lg"></i></div>
                                     <div class="flex-fill ms-3 text-truncate">
                                         <div class="h6 mb-0">Happy Clients</div>
                                         <span class="small">8,925</span>
@@ -178,84 +178,16 @@
                                         <thead>
                                             <tr>
                                                 <th>Id</th>
-                                                <th>Item</th>
-                                                <th>Customer Name</th>
-                                                <th>Payment Info</th>
-                                                <th>Price</th>
-                                                <th>Status</th>
+                                                <th>Ref</th>
+                                                <th>Product</th>
+                                                <th>Category</th>
+                                                <th>Qty</th>
+                                                <th>Amount</th>
+                                                <th></th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td><strong>#Order-78414</strong></td>
-                                                <td><img src="assets/images/product/product-1.jpg" class="avatar lg rounded me-2" alt="profile-image"><span> Oculus VR </span></td>
-                                                <td>Molly</td>
-                                                <td>Credit Card</td>
-                                                <td>
-                                                    $420
-                                                </td>
-                                                <td><span class="badge bg-warning">Progress</span></td>
-                                            </tr>
-                                            <tr>
-                                                <td><strong>#Order-58414</strong></td>
-                                                <td><img src="assets/images/product/product-2.jpg" class="avatar lg rounded me-2" alt="profile-image"><span>Wall Clock</span></td>
-                                                <td>Brian</td>
-                                                <td>Debit Card</td>
-                                                <td>
-                                                    $220
-                                                </td>
-                                                <td><span class="badge bg-success">Complited</span></td>
-                                            </tr>
-                                            <tr>
-                                                <td><strong>#Order-48414</strong></td>
-                                                <td><img src="assets/images/product/product-3.jpg" class="avatar lg rounded me-2" alt="profile-image"><span>Note Diaries</span></td>
-                                                <td>Julia</td>
-                                                <td>Debit Card</td>
-                                                <td>
-                                                    $250
-                                                </td>
-                                                <td><span class="badge bg-success">Complited</span></td>
-                                            </tr>
-                                            <tr>
-                                                <td><strong>#Order-38414</strong></td>
-                                                <td><img src="assets/images/product/product-4.jpg" class="avatar lg rounded me-2" alt="profile-image"><span>Flower Port</span></td>
-                                                <td>Sonia</td>
-                                                <td>Credit Card</td>
-                                                <td>
-                                                    $320
-                                                </td>
-                                                <td><span class="badge bg-warning">Progress</span></td>
-                                            </tr>
-                                            <tr>
-                                                <td><strong>#Order-28414</strong></td>
-                                                <td><img src="assets/images/product/product-1.jpg" class="avatar lg rounded me-2" alt="profile-image"><span>Oculus VR</span></td>
-                                                <td>Adam H</td>
-                                                <td>Debit Card</td>
-                                                <td>
-                                                    $20
-                                                </td>
-                                                <td><span class="badge bg-warning">Progress</span></td>
-                                            </tr>
-                                            <tr>
-                                                <td><strong>#Order-18414</strong></td>
-                                                <td><img src="assets/images/product/product-2.jpg" class="avatar lg rounded me-2" alt="profile-image"><span>Wall Clock</span></td>
-                                                <td>Alexander</td>
-                                                <td>Debit Card</td>
-                                                <td>
-                                                    $820
-                                                </td>
-                                                <td><span class="badge bg-success">Complited</span></td>
-                                            </tr>
-                                            <tr>
-                                                <td><strong>#Order-11414</strong></td>
-                                                <td><img src="assets/images/product/product-3.jpg" class="avatar lg rounded me-2" alt="profile-image"><span>Note Diaries</span></td>
-                                                <td>Gabrielle</td>
-                                                <td>Bank Emi</td>
-                                                <td>
-                                                    $620
-                                                </td>
-                                                <td><span class="badge bg-success">Complited</span></td>
-                                            </tr>
+                                            <?=current_transaction_datasheet($data)?>
                                         </tbody>
                                     </table>
                                 </div>

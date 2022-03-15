@@ -1,5 +1,47 @@
 <?php
 
+function profile(){
+
+    $profile['endpoint'] = 'user::fetch';
+    $profile['id'] = $_SESSION['cid'];
+    $profile = conn($profile);
+    if(isset($profile['response']['status'])){
+        $d = array(
+            'business'=>'',
+            'fname'=>'',
+            'mname'=>'',
+            'address'=>'',
+            'email'=>'',
+            'mobile'=>'',
+            'country'=>'',
+            'state'=>'',
+            'website'=>'',
+            'postal'=>'',
+            'username'=>'',
+            'passwor'=>''
+        );
+    }else{
+        $profile = $profile['response'];
+        $d = array(
+            'business'=>$profile['company_name'],
+            'fname'=>$profile['fname'],
+            'mname'=>$profile['mname'],
+            'lname'=>$profile['lname'],
+            'address'=>$profile['address'],
+            'email'=>$profile['email'],
+            'mobile'=>$profile['mobile'],
+            'country'=>$profile['country'],
+            'state'=>$profile['state'],
+            'website'=>$profile['website'],
+            'postal'=>$profile['postal_code'],
+            'username'=>$profile['username'],
+            'passwor'=>$profile['password']
+        );
+    }
+
+    return $d;
+} 
+
 function category_combo(){
 
     $data = array(
@@ -39,6 +81,54 @@ function product_combo(){
         }
     }
     return $combo;
+}
+
+function current_transaction_datasheet($data){
+
+    
+    $sheet='';
+   
+    if(isset($data['status'])){
+        $sheet ='';
+    }else{
+        foreach($data as $r){
+            if(!isset($n)){
+                $n = 1;
+            }else{
+                $n = $n + 1;
+            }
+            
+            $id = $r['item_id'];
+            $item = $r['item'];
+            $ref = $r['ref'];
+            $category = $r['category_name'];
+            $qty = number_format($r['qty'],1);
+            $amt = number_format($r['amt'],2);
+
+            if($r['status_id'] == 1){
+                $css = "badge bg-warning";
+                $text = 'Purchase';
+            }elseif($r['status_id'] == 2){
+                $css = "badge bg-success";
+                $text = 'Issued';
+            }elseif($r['status_id'] == 3){
+                $css = "badge bg-danger";
+                $text = 'Return';
+            }
+
+            $sheet.=" 
+            <tr>
+                <td><strong>{$n}</strong></td>
+                <td>{$ref}</td>
+                <td>{$item}</td>                
+                <td>{$category}</td>
+                <td>{$qty}</td>
+                <td>{$amt}</td>
+                <td><span class='{$css}'>{$text}</span></td>
+            </tr>";
+        }
+    }
+    return $sheet;
 }
 
 function category_datasheet(){

@@ -34,10 +34,18 @@ function module($conn,$request){
                 $q[] =  $request['id'];
                 $response = company::fetch($conn,$q);
             }elseif($action === 'update'){
-                $q[] =  $request['address'];
-                $q[] =  $request['mobile'];
-                $q[] =  $request['country'];
-                $q[] =  $request['state'];
+                $q[] = $request['business'];
+                $q[] = $request['fname'];
+                $q[] = $request['mname'];
+                $q[] = $request['lname'];
+                $q[] = $request['email'];
+                $q[] = $request['address'];
+                $q[] = $request['mobile'];
+                $q[] = $request['country'];
+                $q[] = $request['state'];
+                $q[] = $request['postal'];
+                $q[] = $request['website'];
+                $q[] = 1;
                 $q[] =  $request['id'];
                 $response = company::update($conn,$q);
             }            
@@ -207,6 +215,11 @@ function module($conn,$request){
                 }elseif($cmd[2] === 'details'){
                     $q[] = $request['product'];
                     $response = inventory::stock_details_fetch($conn,$q);
+                }elseif($cmd[2] === 'current'){
+                    $response = array(
+                        'current'=>inventory::stock_current_fetch($conn,$q),
+                        'summary'=>inventory::stock_summary($conn,$q)
+                    );
                 }
             }elseif($action === 'view'){
                 $q[] =  $request['id'];

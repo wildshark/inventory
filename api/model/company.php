@@ -52,7 +52,7 @@ class company{
 
     public static function update($conn,$request){
 
-        $sql ='UPDATE `company` SET `address` =?, `mobile` =?, `country` =?, `state` =? WHERE `company_id` =?';
+        $sql ='UPDATE `company` SET `company_name` = ?, `fname` =?, `mname` = ?, `lname` = ?, `address` = ?, `email` = ?, `mobile` = ?, `country` =?, `state` =?, `postal_code` =?, `website` =?, `status_id` =? WHERE `company_id` =?';
         $stmt = $conn->prepare($sql);
         $response = $stmt->execute($request);
         if($response == false){

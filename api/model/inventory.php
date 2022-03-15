@@ -97,7 +97,7 @@ class inventory{
 
     public static function stock_summary_fetch($conn,$request){
         
-        $sql='SELECT * FROM `get_summary` WHERE `company_id`=? LIMIT 0,1000';
+        $sql='SELECT * FROM `get_stock_summary` WHERE `company_id`=? LIMIT 0,1000';
         $stmt = $conn->prepare($sql);
         $stmt->execute($request);
         $response = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -109,6 +109,23 @@ class inventory{
         }else{
             return $response;
         }
+    }
+
+    public static function stock_summary($conn,$request){
+
+        $sql ='SELECT * FROM `get_summary` WHERE `company_id`=? LIMIT 0,1000';
+        $stmt = $conn->prepare($sql);
+        $stmt->execute($request);
+        $response = $stmt->fetch(PDO::FETCH_ASSOC);
+        if($response == false){
+            return array(
+                'status'=>5103,
+                'msg'=>'query record failed'
+            );
+        }else{
+            return $response;
+        }
+
     }
 
     public static function stock_details_fetch($conn,$request){
@@ -125,6 +142,23 @@ class inventory{
         }else{
             return $response;
         }
+    }
+
+    public static function stock_current_fetch($conn,$request){
+
+        $sql='SELECT * FROM `get_stock` WHERE `company_id`=? ORDER BY `inventory_id` DESC LIMIT 0,100';
+        $stmt = $conn->prepare($sql);
+        $stmt->execute($request);
+        $response = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        if($response == false){
+            return array(
+                'status'=>5103,
+                'msg'=>'query record failed'
+            );
+        }else{
+            return $response;
+        }
+
     }
 
     public static function fetch_purchase($conn,$request){

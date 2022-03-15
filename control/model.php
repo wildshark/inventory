@@ -9,7 +9,7 @@ switch($_REQUEST['submit']){
             $url['user'] = 'user-access-zero';
         }else{
             
-            $url['main'] = 'dashboard';
+            $url['user'] = 'dashboard';
         }
     break;
 
@@ -27,6 +27,12 @@ switch($_REQUEST['submit']){
             setcookie('user',$response['username']);
             $_SESSION['cid'] = $response['company_id'];
             $_SESSION['token'] = $md5;
+
+            if(!isset($response['status_id'])){
+                $_SESSION['sid'] = false;
+            }else{
+                $_SESSION['sid'] = true;
+            }
             $url['main'] = 'dashboard';
         }
     break;
@@ -156,6 +162,33 @@ switch($_REQUEST['submit']){
         }else{
             $url['main'] = $_COOKIE['page'];
             $url['status'] =true;
+        }
+    break;
+
+    case'profile-update';
+        $update = array(
+            'endpoint'=>'user::update',
+            'business'=>$_REQUEST['business'],
+            'fname'=>$_REQUEST['fname'],
+            'mname'=>$_REQUEST['mname'],
+            'lname'=>$_REQUEST['lname'],
+            'address'=>$_REQUEST['address'],
+            'email'=>$_REQUEST['email'],
+            'mobile'=>$_REQUEST['mobile'],
+            'country'=>$_REQUEST['country'],
+            'state'=>$_REQUEST['state'],
+            'website'=>$_REQUEST['website'],
+            'postal'=>$_REQUEST['postal-code'],
+            'id'=>$_SESSION['cid']
+        ); 
+        $response = conn($update);
+        if($response['response']['status'] !== 2000){
+            $url['main'] = $_COOKIE['page'];
+            $url['status'] =false;
+        }else{
+            $url['main'] = 'dashboard';
+            $url['status'] =true;
+            $_SESSION['sid'] = true;
         }
     break;
 
