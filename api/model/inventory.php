@@ -12,7 +12,7 @@ class inventory{
 
     public static function verify_qty_avalibe($conn,$request){
 
-        $sql ='SELECT * FROM `get_summary` WHERE `company_id`=? AND `item_id`=? LIMIT 0,1000';
+        $sql ='SELECT get_stock_summary.balance FROM get_stock_summary WHERE get_stock_summary.company_id = ? AND get_stock_summary.item_id =?';
         $stmt = $conn->prepare($sql);
         $stmt->execute($request);
         return $stmt->fetch(PDO::FETCH_ASSOC);
@@ -105,7 +105,7 @@ class inventory{
         }else{
             return array(
                 'status'=>2000,
-                'data'=> $response;
+                'data'=> $response
             );
         }
     }
@@ -124,7 +124,7 @@ class inventory{
         }else{
             return array(
                 'status'=>2000,
-                'data'=> $response;
+                'data'=> $response
             );
         }
 
@@ -144,7 +144,7 @@ class inventory{
         }else{
             return array(
                 'status'=>2000,
-                'data'=> $response;
+                'data'=> $response
             );
         }
     }
@@ -163,7 +163,7 @@ class inventory{
         }else{
             return array(
                 'status'=>2000,
-                'data'=> $response;
+                'data'=> $response
             );
         }
 
@@ -183,7 +183,7 @@ class inventory{
         }else{
             return array(
                 'status'=>2000,
-                'data'=> $response;
+                'data'=> $response
             );
         }
     }
@@ -202,7 +202,7 @@ class inventory{
         }else{
             return array(
                 'status'=>2000,
-                'data'=> $response;
+                'data'=> $response
             );
         }
     }
@@ -221,7 +221,7 @@ class inventory{
         }else{
             return array(
                 'status'=>2000,
-                'data'=> $response;
+                'data'=> $response
             );
         }
     }
@@ -241,7 +241,7 @@ class inventory{
         }else{
             return array(
                 'status'=>2000,
-                'data'=> $response;
+                'data'=> $response
             );
         }
     }

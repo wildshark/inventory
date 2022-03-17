@@ -1,8 +1,8 @@
 {
 
-    "server":"localhost",
-    "user":"root",
-    "password":"",
+    "server":"sql.qshark.ml",
+    "user":"quaye",
+    "password":"quaye8282",
     "dbname":"inventory",
     "charset":"utf8mb4"
 }

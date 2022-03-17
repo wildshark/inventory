@@ -60,7 +60,7 @@ class category{
         }else{
              return array(
                 'status'=>2000,
-                'data'=> $response;
+                'data'=> $response
             );
         }
     }
@@ -79,7 +79,7 @@ class category{
         }else{
              return array(
                 'status'=>2000,
-                'data'=> $response;
+                'data'=> $response
             );
         }
     }

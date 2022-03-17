@@ -30,7 +30,7 @@ class company{
         }else{
             return array(
                 'status'=>2000,
-                'data'=> $response;
+                'data'=> $response
             );
             
         }
@@ -86,7 +86,7 @@ class company{
         }else{
             return array(
                 'status'=>2000,
-                'data'=> $response;
+                'data'=> $response
             );
         }
         

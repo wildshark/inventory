@@ -50,10 +50,11 @@ function category_combo(){
     );
     $combo='';
     $response = conn($data);
-    if(isset($response['response']['status'])){
+    $datasheet = $response['response']['data'];
+    if(!isset($response['response']['data'])){
         $combo ='';
     }else{
-        foreach($response['response'] as $r){
+        foreach($datasheet as $r){
             $id = $r['category_id'];
             $name = $r['category_name'];
             $combo.="<option value='{$id}'>{$name}</option>";
@@ -71,10 +72,11 @@ function product_combo(){
     );
     $combo='';
     $response = conn($data);
-    if(isset($response['response']['status'])){
+    $datasheet = $response['response']['data'];
+    if(!isset($response['response']['data'])){
         $combo ='';
     }else{
-        foreach($response['response'] as $r){
+        foreach($datasheet as $r){
             $id = $r['item_id'];
             $name = $r['item'];
             $combo.="<option value='{$id}'>{$name}</option>";
@@ -200,10 +202,12 @@ function category_datasheet(){
     );
     $sheet='';
     $response = conn($data);
-    if(isset($response['response']['status'])){
+    
+    if(!isset($response['response']['data'])){
         $sheet ='';
     }else{
-        foreach($response['response'] as $r){
+        $datasheet = $response['response']['data'];
+        foreach($datasheet as $r){
             if(!isset($n)){
                 $n = 1;
             }else{
@@ -244,10 +248,11 @@ function product_datasheet(){
     );
     $sheet='';
     $response = conn($data);
-    if(isset($response['response']['status'])){
+
+    if(!isset($response['response']['data'])){
         $sheet ='';
-    }else{
-        foreach($response['response'] as $r){
+    }else{ 
+        foreach($response['response']['data'] as $r){
             if(!isset($n)){
                 $n = 1;
             }else{
@@ -290,10 +295,10 @@ function purchase_datasheet(){
     );
     $sheet='';
     $response = conn($data);
-    if(isset($response['response']['status'])){
+    if(!isset($response['response']['data'])){
         $sheet ='';
     }else{
-        foreach($response['response'] as $r){
+        foreach($response['response']['data'] as $r){
             if(!isset($n)){
                 $n = 1;
             }else{
@@ -339,10 +344,11 @@ function issued_datasheet(){
     );
     $sheet='';
     $response = conn($data);
-    if(isset($response['response']['status'])){
+   
+    if(!isset($response['response']['data'])){
         $sheet ='';
     }else{
-        foreach($response['response'] as $r){
+        foreach($response['response']['data'] as $r){
             if(!isset($n)){
                 $n = 1;
             }else{
@@ -388,10 +394,10 @@ function return_datasheet(){
     );
     $sheet='';
     $response = conn($data);
-    if(isset($response['response']['status'])){
+    if(!isset($response['response']['data'])){
         $sheet ='';
     }else{
-        foreach($response['response'] as $r){
+        foreach($response['response']['data'] as $r){
             if(!isset($n)){
                 $n = 1;
             }else{
@@ -437,10 +443,10 @@ function stock_datasheet(){
     );
     $sheet='';
     $response = conn($data);
-    if(isset($response['response']['status'])){
+    if(!isset($response['response']['data'])){
         $sheet ='';
     }else{
-        foreach($response['response'] as $r){
+        foreach($response['response']['data'] as $r){
             if(!isset($n)){
                 $n = 1;
             }else{
@@ -464,7 +470,7 @@ function stock_datasheet(){
                 <td>{$balance}</td>
                 <td>
                     <div class='btn-group' role='group' aria-label='Basic outlined example'>
-                        <a href='?main=details&id={$id}' class='btn btn-outline-secondary'><i class='icofont-eye text-success'></i></a>
+                        <a href='?main=details&id={$id}&item={$item}' class='btn btn-outline-secondary'><i class='icofont-eye text-success'></i></a>
                     </div>
                 </td>
             </tr>";
@@ -482,10 +488,11 @@ function details_datasheet(){
     );
     $sheet='';
     $response = conn($data);
-    if(isset($response['response']['status'])){
+    $datasheet = $response['response']['data'];
+    if(!isset($response['response']['data'])){
         $sheet ='';
     }else{
-        foreach($response['response'] as $r){
+        foreach($datasheet as $r){
             if(!isset($n)){
                 $n = 1;
             }else{
@@ -519,41 +526,21 @@ function details_datasheet(){
 }
 
 function conn($request){
-    //echo http_build_query($request);
-    //exit();
-    $ssl = true;
+    echo http_build_query($request);
+ // exit(0);
+   $ch = curl_init();
+  // $url ="https://api.iquipedigital.com/inventory/";
 
-    if($ssl === false){
-        //http
-        $ssl = array(
-            'verify_peer'=> true,
-            'allow_self_signed'=> false
-        );
-    }else{
-        //https
-        $ssl = array(
-            'verify_peer'=> false,
-            'allow_self_signed'=> true
-        );
-    }
-
-    $options = array(
-        'ssl'=> $ssl,
-        'http'=> array(
-        'method'=> "POST",
-        'header'=>
-            "Accept-language: en\r\n".
-            "Content-type: application/x-www-form-urlencoded\r\n",
-            'content'=>http_build_query($request)
-            )
-    );
-    
-    $context = stream_context_create($options);
-              
-    $fp = fopen('http://localhost/inventory/','rb',false,$context);
-    $response = stream_get_contents($fp);
-    return json_decode($response,true);
-    
+   $url ="http://localhost/inventory/api/";
+   curl_setopt($ch,CURLOPT_URL,$url);
+   curl_setopt($ch,CURLOPT_POST, 1);                //0 for a get request
+   curl_setopt($ch,CURLOPT_POSTFIELDS,http_build_query($request));
+   curl_setopt($ch,CURLOPT_RETURNTRANSFER, true);
+   curl_setopt($ch,CURLOPT_CONNECTTIMEOUT ,3);
+   curl_setopt($ch,CURLOPT_TIMEOUT, 20);
+   $response = curl_exec($ch);
+   curl_close ($ch);
+   return json_decode($response,TRUE);
 }
     
 ?>

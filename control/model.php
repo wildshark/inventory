@@ -123,13 +123,18 @@ switch($_REQUEST['submit']){
         $issued['qty'] = $_REQUEST['qty'];
         $issued['details'] ='Null';
         $issued['id'] = $_SESSION['cid'];
-        $response = conn($issued);
-        if($response['response']['status'] !== 2000){
+        $response = conn($issued);       
+        if($response['response']['status'] == 5106){
             $url['main'] ='issued';
-            $url['status'] =false;
+            $url['status'] ="stock-low";
         }else{
-            $url['main'] ='issued';
-            $url['status'] =true;
+            if($response['response']['status'] !== 2000){
+                $url['main'] ='issued';
+                $url['status'] =false;
+            }else{
+                $url['main'] ='issued';
+                $url['status'] =true;
+            }   
         }
     break;
 

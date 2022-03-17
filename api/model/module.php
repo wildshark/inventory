@@ -128,30 +128,15 @@ function module($conn,$request){
                 $search[] = $request['ref'];
                 $check = inventory::check($conn,$search);
                 if($check == false){
-                    $item[] =  $request['id'];
-                    $item[] =  $request['item'];
-                    $bbalance = inventory::verify_qty_avalibe($conn,$item);
-                    if($bbalance === false){
-                        $response = array(
-                            'status'=>5103,
-                            'msg'=>'query record failed'
-                        );
-                    }elseif($request['qty'] > $bbalance['balance']){
-                        $response = array(
-                            'status'=>5106,
-                            'msg'=>'stock is below request'
-                        );
-                    }else{
-                        $q[] =  $request['id'];
-                        $q[] =  $request['item'];
-                        $q[] =  $request['date'];
-                        $q[] =  $request['ref'];
-                        $q[] =  $request['details'];
-                        $q[] =  $request['price'];
-                        $q[] =  $request['qty'];
-                        $q[] = 1;
-                        $response = inventory::purchase($conn,$q);
-                    }
+                    $q[] =  $request['id'];
+                    $q[] =  $request['item'];
+                    $q[] =  $request['date'];
+                    $q[] =  $request['ref'];
+                    $q[] =  $request['details'];
+                    $q[] =  $request['price'];
+                    $q[] =  $request['qty'];
+                    $q[] = 1;
+                    $response = inventory::purchase($conn,$q);
                 }else{
                     $response = array(
                         'status'=>5105,
@@ -165,15 +150,30 @@ function module($conn,$request){
                 $search[] = $request['ref'];
                 $check = inventory::check($conn,$search);
                 if($check == false){
-                    $q[] =  $request['id'];
-                    $q[] =  $request['item'];
-                    $q[] =  $request['date'];
-                    $q[] =  $request['ref'];
-                    $q[] =  $request['details'];
-                    $q[] =  $request['price'];
-                    $q[] =  $request['qty']; 
-                    $q[] = 2;
-                    $response = inventory::issued($conn,$q);
+                    $item[] =  $request['id'];
+                    $item[] =  $request['item'];
+                    $balance = inventory::verify_qty_avalibe($conn,$item);
+                    if($balance === false){
+                        $response = array(
+                            'status'=>5103,
+                            'msg'=>'query record failed'
+                        );
+                    }elseif($request['qty'] > $balance['balance']){
+                        $response = array(
+                            'status'=>5106,
+                            'msg'=>'stock is below request'
+                        );
+                    }else{
+                        $q[] =  $request['id'];
+                        $q[] =  $request['item'];
+                        $q[] =  $request['date'];
+                        $q[] =  $request['ref'];
+                        $q[] =  $request['details'];
+                        $q[] =  $request['price'];
+                        $q[] =  $request['qty']; 
+                        $q[] = 2;
+                        $response = inventory::issued($conn,$q);
+                    }
                 }else{
                     $response = array(
                         'status'=>5105,

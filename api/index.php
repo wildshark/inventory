@@ -12,7 +12,7 @@ include('model/module.php');
 
 $CONFIG = json_decode(file_get_contents("db.json"),TRUE);
 
-$host = $CONFIG['server'];//'161.35.237.70';
+$host = $CONFIG['server'];
 $db   = $CONFIG['dbname'];
 $charset = 'utf8mb4';
 
@@ -39,7 +39,7 @@ try {
 }catch (PDOException $e) {
     //connection error
     $json = array(
-        'status' => 5100,
+        'status' => 5400,
         'msg'=> "DataBase Error: The user could not be added. ".$e->getMessage()
     );
 }  
