@@ -526,12 +526,11 @@ function details_datasheet(){
 }
 
 function conn($request){
-    echo http_build_query($request);
+   // echo http_build_query($request);
  // exit(0);
    $ch = curl_init();
-  // $url ="https://api.iquipedigital.com/inventory/";
-
-   $url ="http://localhost/inventory/api/";
+    
+   $url ="https://api.iquipedigital.com/inventory/";
    curl_setopt($ch,CURLOPT_URL,$url);
    curl_setopt($ch,CURLOPT_POST, 1);                //0 for a get request
    curl_setopt($ch,CURLOPT_POSTFIELDS,http_build_query($request));
