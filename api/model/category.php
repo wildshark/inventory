@@ -58,7 +58,10 @@ class category{
                 'msg'=>'query record failed'
             );
         }else{
-            return $response;
+             return array(
+                'status'=>2000,
+                'data'=> $response;
+            );
         }
     }
 
@@ -74,7 +77,10 @@ class category{
                 'msg'=>'query record failed'
             );
         }else{
-            return $response;
+             return array(
+                'status'=>2000,
+                'data'=> $response;
+            );
         }
     }
 

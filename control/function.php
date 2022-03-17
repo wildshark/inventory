@@ -519,9 +519,26 @@ function details_datasheet(){
 }
 
 function conn($request){
-    echo http_build_query($request);
+    //echo http_build_query($request);
     //exit();
+    $ssl = true;
+
+    if($ssl === false){
+        //http
+        $ssl = array(
+            'verify_peer'=> true,
+            'allow_self_signed'=> false
+        );
+    }else{
+        //https
+        $ssl = array(
+            'verify_peer'=> false,
+            'allow_self_signed'=> true
+        );
+    }
+
     $options = array(
+        'ssl'=> $ssl,
         'http'=> array(
         'method'=> "POST",
         'header'=>
@@ -529,11 +546,11 @@ function conn($request){
             "Content-type: application/x-www-form-urlencoded\r\n",
             'content'=>http_build_query($request)
             )
-        );
-              
+    );
+    
     $context = stream_context_create($options);
               
-    $fp = fopen('http://localhost/inventory/api/','rb',false,$context);
+    $fp = fopen('http://localhost/inventory/','rb',false,$context);
     $response = stream_get_contents($fp);
     return json_decode($response,true);
     

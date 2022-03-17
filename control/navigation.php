@@ -1,9 +1,9 @@
 <?php
 
-if(!isset($_SESSION['token'])){
+if(!isset($_SESSION['usertoken'])){
     echo'no session'; 
 }else{
-    if($_SESSION['token'] !== $_COOKIE['token']){
+    if($_SESSION['usertoken'] !== $_COOKIE['usertoken']){
         echo 'no token';
     }else{ 
         setcookie('page',$_REQUEST['main']);

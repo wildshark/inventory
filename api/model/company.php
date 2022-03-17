@@ -28,7 +28,11 @@ class company{
                 'msg'=>'invaild login details'
             );
         }else{
-            return $response;
+            return array(
+                'status'=>2000,
+                'data'=> $response;
+            );
+            
         }
     }
 
@@ -80,7 +84,10 @@ class company{
                 'msg'=>'query record failed'
             );
         }else{
-            return $response;
+            return array(
+                'status'=>2000,
+                'data'=> $response;
+            );
         }
         
     }

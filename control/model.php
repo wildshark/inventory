@@ -21,12 +21,12 @@ switch($_REQUEST['submit']){
             $url['user'] = 'user-access-zero';
         }else{
             $md5 = md5($response['company_id']);
-            setcookie('token',$md5);
+            setcookie('usertoken',$md5);
             setcookie('cid',$response['company_id']);
             setcookie('business',$response['company_name']);
             setcookie('user',$response['username']);
             $_SESSION['cid'] = $response['company_id'];
-            $_SESSION['token'] = $md5;
+            $_SESSION['usertoken'] = $md5;
 
             if(!isset($response['status_id'])){
                 $_SESSION['sid'] = false;

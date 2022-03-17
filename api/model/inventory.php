@@ -15,12 +15,8 @@ class inventory{
         $sql ='SELECT * FROM `get_summary` WHERE `company_id`=? AND `item_id`=? LIMIT 0,1000';
         $stmt = $conn->prepare($sql);
         $stmt->execute($request);
-        $response = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        if($response == false){
-            return false;
-        }else{
-            return $response;
-        }
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+       
     }
     
     public static function purchase($conn,$request){
@@ -107,7 +103,10 @@ class inventory{
                 'msg'=>'query record failed'
             );
         }else{
-            return $response;
+            return array(
+                'status'=>2000,
+                'data'=> $response;
+            );
         }
     }
 
@@ -123,7 +122,10 @@ class inventory{
                 'msg'=>'query record failed'
             );
         }else{
-            return $response;
+            return array(
+                'status'=>2000,
+                'data'=> $response;
+            );
         }
 
     }
@@ -140,7 +142,10 @@ class inventory{
                 'msg'=>'query record failed'
             );
         }else{
-            return $response;
+            return array(
+                'status'=>2000,
+                'data'=> $response;
+            );
         }
     }
 
@@ -156,7 +161,10 @@ class inventory{
                 'msg'=>'query record failed'
             );
         }else{
-            return $response;
+            return array(
+                'status'=>2000,
+                'data'=> $response;
+            );
         }
 
     }
@@ -173,7 +181,10 @@ class inventory{
                 'msg'=>'query record failed'
             );
         }else{
-            return $response;
+            return array(
+                'status'=>2000,
+                'data'=> $response;
+            );
         }
     }
 
@@ -189,7 +200,10 @@ class inventory{
                 'msg'=>'query record failed'
             );
         }else{
-            return $response;
+            return array(
+                'status'=>2000,
+                'data'=> $response;
+            );
         }
     }
 
@@ -205,7 +219,10 @@ class inventory{
                 'msg'=>'query record failed'
             );
         }else{
-            return $response;
+            return array(
+                'status'=>2000,
+                'data'=> $response;
+            );
         }
     }
 
@@ -222,7 +239,10 @@ class inventory{
                 'msg'=>'query record failed'
             );
         }else{
-            return $response;
+            return array(
+                'status'=>2000,
+                'data'=> $response;
+            );
         }
     }
 
