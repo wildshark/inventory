@@ -1,2 +1,2 @@
-# inventory
- Inventory System for SMME
+# Inventory for SME
+ Inventory System for SME to ma

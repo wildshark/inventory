@@ -532,10 +532,15 @@ function conn($request){
     
    $url ="https://api.iquipedigital.com/inventory/";
    curl_setopt($ch,CURLOPT_URL,$url);
-   curl_setopt($ch,CURLOPT_POST, 1);                //0 for a get request
+   curl_setopt($ch,CURLOPT_POST, 1);                
    curl_setopt($ch,CURLOPT_POSTFIELDS,http_build_query($request));
    curl_setopt($ch,CURLOPT_RETURNTRANSFER, true);
    curl_setopt($ch,CURLOPT_CONNECTTIMEOUT ,3);
+
+   //for debug only!
+   curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+   curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+
    curl_setopt($ch,CURLOPT_TIMEOUT, 20);
    $response = curl_exec($ch);
    curl_close ($ch);

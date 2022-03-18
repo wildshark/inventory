@@ -23,12 +23,12 @@ function menu(){
 function language(){
 
     return'
-    <li>
-        <a href="?main=dashboard&lang=en" class=""><img src="assets/images/flag/GB.png" alt=""> English</a>
-    </li>
-    <li>
-        <a href="?main=dashboard&lang=fr" class=""><img src="assets/images/flag/FR.png" alt=""> French</a>
-    </li>';
+        <li>
+            <a href="?main=dashboard&lang=en" class=""><img src="assets/images/flag/GB.png" alt=""> English</a>
+        </li>
+        <li>
+            <a href="?main=dashboard&lang=fr" class=""><img src="assets/images/flag/FR.png" alt=""> French</a>
+        </li>';
 }
 
 function user_menu(){
