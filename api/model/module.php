@@ -6,12 +6,7 @@ function module($conn,$request){
     $endpoint = $cmd[0];
     $action = $cmd[1];
 
-    switch($endpoint){ 
-
-        case'total';
-            $q[] =  $request['id'];
-            $response = inventory::count_record($conn,$q);
-        break;
+    switch($endpoint){
 
         case'user';
             if($action === 'login'){

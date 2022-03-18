@@ -7,8 +7,16 @@ class inventory{
         $sql ='SELECT count(inventory_id) AS total FROM stock_inventory WHERE company_id = ?';
         $stmt = $conn->prepare($sql);
         $stmt->execute($request);
-        return $stmt->fetch(PDO::FETCH_ASSOC);
-       
+        $response = $stmt->fetch(PDO::FETCH_ASSOC);
+        if($response == false){
+            return false;
+        }else{
+            if($request['total'] > 20){
+                return "max-limit";
+            }else{
+                return false;
+            }
+        }
     }
 
     public static function check($conn,$request){

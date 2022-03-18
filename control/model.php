@@ -5,21 +5,22 @@ switch($_REQUEST['submit']){
     case'signup';
         $_REQUEST['endpoint'] ='user::login';
         $response = conn($_REQUEST);
-        if(isset($response['status'])){
+        if(!isset($response['response']['data'])){
             $url['user'] = 'user-access-zero';
         }else{
-            
             $url['user'] = 'dashboard';
         }
     break;
 
     case'login';
-        $_REQUEST['endpoint'] ='user::login';
-        $response = conn($_REQUEST);
-        $response = $response['response'];
-        if(isset($response['status'])){
+        $login['endpoint'] ='user::login';
+        $login['username'] = $_REQUEST['username'];
+        $login['password'] = $_REQUEST['password'];
+        $response = conn($login);
+        if(!isset($response['response']['data'])){
             $url['user'] = 'user-access-zero';
         }else{
+            $response = $response['response']['data'];
             $md5 = md5($response['company_id']);
             setcookie('usertoken',$md5);
             setcookie('cid',$response['company_id']);

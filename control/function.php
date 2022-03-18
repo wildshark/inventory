@@ -526,25 +526,24 @@ function details_datasheet(){
 }
 
 function conn($request){
-   // echo http_build_query($request);
- // exit(0);
-   $ch = curl_init();
+  // echo http_build_query($request);
+// exit(0);
+   //$ch = curl_init();
     
    $url ="https://api.iquipedigital.com/inventory/";
-   curl_setopt($ch,CURLOPT_URL,$url);
+   
+   $ch = curl_init();
+   curl_setopt($ch, CURLOPT_URL, $url);
+   curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
+   curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
    curl_setopt($ch,CURLOPT_POST, 1);                
    curl_setopt($ch,CURLOPT_POSTFIELDS,http_build_query($request));
-   curl_setopt($ch,CURLOPT_RETURNTRANSFER, true);
-   curl_setopt($ch,CURLOPT_CONNECTTIMEOUT ,3);
-
-   //for debug only!
-   curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
-   curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-
+   curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
    curl_setopt($ch,CURLOPT_TIMEOUT, 20);
    $response = curl_exec($ch);
-   curl_close ($ch);
-   return json_decode($response,TRUE);
+   $data = json_decode($response,TRUE);
+   return $data;
+   curl_close($ch); 
 }
     
 ?>
