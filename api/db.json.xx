@@ -1,0 +1,8 @@
+{
+
+    "server":"localhost",
+    "user":"root",
+    "password":"",
+    "dbname":"inventory",
+    "charset":"utf8mb4"
+}

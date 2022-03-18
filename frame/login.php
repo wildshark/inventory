@@ -48,7 +48,7 @@
                                     <div class="col-12">
                                         <div class="mb-2">
                                             <label class="form-label">Email address</label>
-                                            <input type="email" name='username' class="form-control form-control-lg" placeholder="name@example.com">
+                                            <input type="text" name='username' class="form-control form-control-lg" placeholder="name@example.com">
                                         </div>
                                     </div>
                                     <div class="col-12">

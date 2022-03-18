@@ -2,6 +2,15 @@
 
 class inventory{
 
+    public static function count_record($conn,$request){
+
+        $sql ='SELECT count(inventory_id) AS total FROM stock_inventory WHERE company_id = ?';
+        $stmt = $conn->prepare($sql);
+        $stmt->execute($request);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+       
+    }
+
     public static function check($conn,$request){
 
         $sql='SELECT * FROM get_stock WHERE company_id =? AND item_id =? AND inv_date =? AND ref =?';

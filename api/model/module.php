@@ -8,6 +8,11 @@ function module($conn,$request){
 
     switch($endpoint){ 
 
+        case'total';
+            $q[] =  $request['id'];
+            $response = inventory::count_record($conn,$q);
+        break;
+
         case'user';
             if($action === 'login'){
                 $q[] = $request['username'];
