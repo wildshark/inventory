@@ -6,7 +6,7 @@ function module($conn,$request){
     $endpoint = $cmd[0];
     $action = $cmd[1];
 
-    switch($endpoint){
+    switch($endpoint){ 
 
         case'user';
             if($action === 'login'){
